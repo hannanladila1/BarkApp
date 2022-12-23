@@ -32,7 +32,7 @@ fun MyApp(){
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    BarkAppTheme(darkTheme = false) {
+    BarkAppTheme(darkTheme = true) {
       MyApp()
     }
 }
