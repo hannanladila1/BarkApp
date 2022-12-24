@@ -10,7 +10,7 @@ jobs:
   # Job 1 ->
   CI-Prod:
     name: Apk uploading on Firebase App Distribution
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     # Step 1 Store all required keys in environment variable
     env:
@@ -45,11 +45,15 @@ jobs:
           ruby-version: '3.1'
 
       # Step 5 Install the bundler & Fastlane (Create environment for ruby to avoid dependency hell and manage the dependencies versions)
-      - name: Install Bundler
-        run: gem install bundler
+      - name: Install Fastlane dependencies
+        run: gem install bundler && bundle install
 
-      - name: Install gems
-        run: bundle install
+      - name: Supply init
+        run:  bundle exec fastlane supply init
+
+
+      - name: Run test
+        run: bundle exec fastlane test
 
       # TODO: Remove this after successful build and try
 #      - name: Swift Packages Cache
